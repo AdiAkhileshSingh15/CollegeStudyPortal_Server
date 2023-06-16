@@ -371,7 +371,7 @@ module.exports = {
             res.status(200).json({ result: allFaculties })
         }
         catch (err) {
-            console.log("Error in gettting all faculties", err.message)
+            console.log("Error in getting all faculties", err.message)
         }
     },
     getAllStudent: async (req, res, next) => {
@@ -384,14 +384,15 @@ module.exports = {
             if (!year) {
                 errors.year = "Select year"
             }
-            if (errors) {
+            if (Object.keys(errors).length !== 0) {
                 return res.status(400).json(errors)
             }
             const allStudents = await Student.find({ department, year })
+            console.log(allStudents)
             res.status(200).json({ result: allStudents })
         }
         catch (err) {
-            console.log("Error in gettting all students", err.message)
+            console.log("Error in getting all students", err.message)
         }
     },
     getAllSubject: async (req, res, next) => {
@@ -404,14 +405,14 @@ module.exports = {
             if (!year) {
                 errors.year = "Select year"
             }
-            if (errors) {
+            if (Object.keys(errors).length !== 0) {
                 return res.status(400).json(errors)
             }
             const allSubjects = await Subject.find({ department, year })
             res.status(200).json({ result: allSubjects })
         }
         catch (err) {
-            console.log("Error in gettting all students", err.message)
+            console.log("Error in getting all students", err.message)
         }
     },
     getAllFaculties: async (req, res, next) => {
